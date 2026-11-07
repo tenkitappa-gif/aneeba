@@ -52,7 +52,7 @@ DATA.reasons = [
   {
     icon: "heart",
     title: "You, in my dreams",
-    text: "The miles keep you far all day. Then I sleep, and somehow you're right here — closer than distance allows."
+    text: "Miles apart all day. Then I fall asleep and you're right here."
   },
   {
     icon: "star",

@@ -51,8 +51,8 @@ DATA.story = [
 DATA.reasons = [
   {
     icon: "heart",
-    title: "Your laugh",
-    text: "It arrives before the rest of you, and the whole room warms up two seconds early. Nobody notices but me."
+    title: "You, in my dreams",
+    text: "The miles keep you far all day. Then I sleep, and somehow you're right here — closer than distance allows."
   },
   {
     icon: "star",

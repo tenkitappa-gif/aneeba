@@ -11,7 +11,7 @@ DATA.letter = {
   paragraphs: [
     "I'm not very good at saying big things out loud. I get shy, I get awkward, and then I say something completely stupid. So I built you this instead — a quiet little corner of the internet where I could take my time.",
     "I don't know how to explain what you are to me. You're the first person I want to tell everything to, and the only person I don't have to explain anything to. You are the calm in a day that makes no sense, and the chaos I would choose every single time.",
-    "I'm not promising you the stars. I'm promising you the ordinary things. The Tuesday evenings. The long drives with no destination. The <em>did you eat?</em> messages. The silences that never feel empty. The version of me that stays even when it's hard.",
+    "I'm not promising you the stars. I'm promising you the ordinary things. The late-night calls. The good morning texts. The countdowns to the next time I see you. The <em>did you eat?</em> messages. The silences that never feel empty. The version of me that stays even when it's hard.",
     "You don't have to be perfect for me, and you don't have to be okay all the time. Just be here. I'll meet you wherever you are.",
     "There was nobody like you before. There will never be anyone like you after. You are my favourite person, my safest place, <strong>my home</strong>."
   ],
@@ -95,17 +95,17 @@ DATA.promises = [
 ];
 
 /* ---------------- gallery ---------------- */
-/* Drop photos into assets/photos/ with these exact names (photo-1.jpg ... photo-8.jpg)
-   and they appear automatically. You can also tap any frame on the site to add one. */
+/* A frame with src:null shows as an empty "add photo" slot (no broken request).
+   To fill one permanently, drop the file into assets/photos/ and set its src. */
 DATA.gallery = [
   { src: "assets/photos/photo-1.jpg", caption: "the first picture i saved of you" },
   { src: "assets/photos/photo-2.jpg", caption: "that day i couldn't stop smiling" },
   { src: "assets/photos/photo-3.jpg", caption: "my favourite kind of ordinary" },
   { src: "assets/photos/photo-4.jpg", caption: "you, being completely you", wide: true },
-  { src: "assets/photos/photo-5.jpg", caption: "the light was good — you were better" },
-  { src: "assets/photos/photo-6.jpg", caption: "a moment i kept" },
-  { src: "assets/photos/photo-7.jpg", caption: "us, in our own little world", tall: true },
-  { src: "assets/photos/photo-8.jpg", caption: "and this one is my favourite" }
+  { src: null, caption: "the light was good - you were better" },
+  { src: null, caption: "a moment i kept" },
+  { src: null, caption: "you, in your own little world", tall: true },
+  { src: null, caption: "and this one is my favourite" }
 ];
 
 /* ---------------- songs ---------------- */

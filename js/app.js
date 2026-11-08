@@ -116,7 +116,7 @@
       speed: Math.random() * 0.32 + 0.08,
       drift: (Math.random() - 0.5) * 0.22,
       alpha: Math.random() * 0.45 + 0.12,
-      color: rose ? "255,111,156" : "243,201,139",
+      color: rose ? "192,90,131" : "177,140,255",
       sparkle: Math.random() < 0.14,
       phase: Math.random() * Math.PI * 2
     };
@@ -381,7 +381,7 @@
 
   function tileMarkup(item, i) {
     const classes = "tile" + (item.tall ? " tile--tall" : "") + (item.wide ? " tile--wide" : "");
-    return '<button class="' + classes + '" type="button" data-gallery="' + i + '" aria-label="Add a photo">' +
+    return '<button class="' + classes + '" type="button" data-gallery="' + i + '" aria-label="Add a photo here">' +
       '<img class="tile__img" alt="" />' +
       '<span class="tile__fallback">' +
         '<span class="tile__plus"><svg class="ico"><use href="#i-plus"/></svg></span>' +
@@ -421,7 +421,8 @@
         tile.classList.remove("is-filled");
         tile.setAttribute("aria-label", "Add a photo here");
       });
-      img.src = saved || data.gallery[i].src;
+      const initialSrc = saved || data.gallery[i].src;
+      if (initialSrc) img.src = initialSrc;
 
       tile.addEventListener("click", () => {
         if (tile.classList.contains("is-filled")) openLightbox(tile);
@@ -831,21 +832,16 @@
     heroArt.addEventListener("mouseleave", () => { portrait.style.transform = ""; });
   }
 
-  /* ---------------- scroll spy ---------------- */
-  const railLinks = $$(".rail__link");
-  const sections = $$(".page section[id]");
-  if ("IntersectionObserver" in window && sections.length) {
-    const spy = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const id = entry.target.id;
-        railLinks.forEach((link) => {
-          link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
-        });
-      });
-    }, { rootMargin: "-42% 0px -52% 0px", threshold: 0 });
-    sections.forEach((s) => spy.observe(s));
-  }
+  /* ---------------- active page in the nav ---------------- */
+  const hereRaw = (location.pathname.split("/").pop() || "").toLowerCase();
+  const herePage = !hereRaw || hereRaw === "index.html" ? "index.html" : hereRaw;
+  $$(".rail__link, .menu__nav a").forEach((link) => {
+    const href = (link.getAttribute("href") || "").split(/[?#]/)[0].toLowerCase();
+    const on = href === herePage;
+    link.classList.toggle("is-active", on);
+    if (on) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
 
   /* ---------------- escape / keys ---------------- */
   document.addEventListener("keydown", (e) => {

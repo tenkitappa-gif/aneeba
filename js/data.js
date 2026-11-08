@@ -56,8 +56,8 @@ DATA.reasons = [
   },
   {
     icon: "star",
-    title: "The way you say my name",
-    text: "Like it's a secret you're letting only me hear. I have never once gotten tired of it."
+    title: "Your sleepy voice",
+    text: "Half-asleep on a call, still refusing to hang up. That's the version of you I miss most at 3am."
   },
   {
     icon: "sparkle",

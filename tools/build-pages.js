@@ -9,7 +9,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
-const V = "6";
+const V = "7";
 
 /* ---------------- navigation ---------------- */
 const NAV = [
@@ -269,7 +269,7 @@ const HERO = `<section class="hero" id="home">
           <span class="chapter-card__no">03</span>
           <span class="chapter-card__ico"><svg class="ico"><use href="#i-heart"/></svg></span>
           <span class="chapter-card__title">Reasons</span>
-          <span class="chapter-card__line">six things i never said out loud</span>
+          <span class="chapter-card__line">six reasons it's always been you</span>
           <span class="chapter-card__go">flip the cards <svg class="ico"><use href="#i-right"/></svg></span>
         </a>
         <a class="chapter-card" href="promises.html" data-reveal style="--d:.16s">
@@ -345,7 +345,7 @@ const REASONS = `<section class="section" id="reasons">
     <div class="shell">
       <div class="head head--center">
         <p class="kicker" data-reveal><span class="kicker__line"></span>chapter three</p>
-        <h2 class="head__title" data-reveal style="--d:.08s">Reasons I never <em>said out loud</em></h2>
+        <h2 class="head__title" data-reveal style="--d:.08s">Reasons it's <em>always you</em></h2>
         <p class="head__sub" data-reveal style="--d:.16s">Tap any card. Every single one of them is true.</p>
       </div>
       <div class="reasons" id="reasonsGrid"></div>
@@ -468,7 +468,7 @@ const PAGES = [
     file: "reasons.html",
     id: "reasons",
     title: "Reasons — For Aneeba",
-    desc: "Six things I never said out loud.",
+    desc: "Six little reasons it's always you.",
     body: REASONS + pagenav(
       { file: "story.html", label: "Our story" },
       { file: "promises.html", label: "Promises" }

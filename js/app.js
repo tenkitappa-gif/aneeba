@@ -381,13 +381,13 @@
 
   function tileMarkup(item, i) {
     const classes = "tile" + (item.tall ? " tile--tall" : "") + (item.wide ? " tile--wide" : "");
-    return '<button class="' + classes + '" type="button" data-gallery="' + i + '" aria-label="Add a photo here">' +
+    const cap = (item.caption || "").replace(/"/g, "&quot;");
+    return '<button class="' + classes + '" type="button" data-gallery="' + i + '" data-caption="' + cap + '" aria-label="Add a photo here">' +
       '<img class="tile__img" alt="" />' +
       '<span class="tile__fallback">' +
         '<span class="tile__plus"><svg class="ico"><use href="#i-plus"/></svg></span>' +
         '<span>add photo</span>' +
       '</span>' +
-      '<span class="tile__cap">' + item.caption + '</span>' +
       '<span class="tile__zoom" aria-hidden="true"><svg class="ico"><use href="#i-image"/></svg></span>' +
     '</button>';
   }
@@ -401,9 +401,9 @@
     if (!tile) return;
     const img = $(".tile__img", tile);
     img.src = src;
-    img.alt = $(".tile__cap", tile).textContent;
+    img.alt = tile.dataset.caption || "";
     tile.classList.add("is-filled");
-    tile.setAttribute("aria-label", "Open photo: " + $(".tile__cap", tile).textContent);
+    tile.setAttribute("aria-label", "Open photo: " + (tile.dataset.caption || "Aneeba"));
   }
 
   if (gallery && data.gallery) {
@@ -414,7 +414,7 @@
       const saved = read(STORE.photo(i), null);
       img.addEventListener("load", () => {
         tile.classList.add("is-filled");
-        const cap = $(".tile__cap", tile).textContent;
+        const cap = tile.dataset.caption || "Aneeba";
         tile.setAttribute("aria-label", "Open photo: " + cap);
       });
       img.addEventListener("error", () => {
@@ -533,8 +533,6 @@
   /* ---------------- lightbox ---------------- */
   const lightbox = $("#lightbox");
   const lbImg = $("#lbImg");
-  const lbCap = $("#lbCap");
-  const lbCount = $("#lbCount");
   let lbList = [], lbIndex = 0;
 
   function renderLightbox() {
@@ -542,15 +540,13 @@
     const item = lbList[lbIndex];
     lbImg.src = item.src;
     lbImg.alt = item.cap;
-    lbCap.textContent = item.cap;
-    lbCount.textContent = (lbIndex + 1) + " / " + lbList.length;
   }
   function openLightbox(tile) {
     if (!lightbox) return;
     const tiles = $$(".tile.is-filled");
     lbList = tiles.map((t) => ({
       src: $(".tile__img", t).src,
-      cap: $(".tile__cap", t).textContent
+      cap: t.dataset.caption || ""
     }));
     lbIndex = Math.max(0, tiles.indexOf(tile));
     renderLightbox();

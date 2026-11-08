@@ -9,7 +9,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
-const V = "9";
+const V = "10";
 
 /* ---------------- navigation ---------------- */
 const NAV = [
@@ -163,7 +163,6 @@ const MODALS = `<!-- letter modal -->
   <button class="lightbox__nav lightbox__nav--prev" type="button" id="lbPrev" aria-label="Previous photo"><svg class="ico"><use href="#i-left"/></svg></button>
   <figure class="lightbox__fig">
     <img id="lbImg" alt="" />
-    <figcaption><span id="lbCap"></span><em id="lbCount"></em></figcaption>
   </figure>
   <button class="lightbox__nav lightbox__nav--next" type="button" id="lbNext" aria-label="Next photo"><svg class="ico"><use href="#i-right"/></svg></button>
 </div>

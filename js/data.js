@@ -90,7 +90,7 @@ DATA.promises = [
   { x: 87, y: 33, title: "I will be patient", text: "Bad days, long silences, moods you can't name. I'm not going anywhere. Take your time." },
   { x: 19, y: 60, title: "I will keep my word", text: "Every promise on this sky is real. Hold me to any one of them, whenever you want." },
   { x: 39, y: 74, title: "I will grow with you", text: "Not ahead of you, not behind you. Beside you, always. We handle the rest together." },
-  { x: 62, y: 57, title: "I will love you out loud", text: "Not in secret, not in half-measures. In front of everyone, in front of the whole world." },
+  { x: 62, y: 57, title: "I will close the distance", text: "Every late-night call, every countdown, every saved-up hug is a step toward the day the miles stop mattering." },
   { x: 81, y: 76, title: "Always, completely yours", text: "Today, tomorrow, and every boring, beautiful day in between. This is the surest one." }
 ];
 

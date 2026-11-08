@@ -9,7 +9,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
-const V = "7";
+const V = "8";
 
 /* ---------------- navigation ---------------- */
 const NAV = [

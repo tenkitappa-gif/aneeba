@@ -98,10 +98,10 @@ DATA.promises = [
 /* A frame with src:null shows as an empty "add photo" slot (no broken request).
    To fill one permanently, drop the file into assets/photos/ and set its src. */
 DATA.gallery = [
-  { src: "assets/photos/photo-1.jpg", caption: "the first picture i saved of you" },
-  { src: "assets/photos/photo-2.jpg", caption: "that day i couldn't stop smiling" },
-  { src: "assets/photos/photo-3.jpg", caption: "my favourite kind of ordinary" },
-  { src: "assets/photos/photo-4.jpg", caption: "you, being completely you", wide: true },
+  { src: "assets/photos/photo-1.jpg", caption: "eyes closed, kiss blown — i'd drive that whole road just for this" },
+  { src: "assets/photos/photo-2.jpg", caption: "you didn't even smile and you're still the prettiest part of the day" },
+  { src: "assets/photos/photo-3.jpg", caption: "that pointed finger and that face could win any argument with me" },
+  { src: "assets/photos/photo-4.jpg", caption: "mehndi, pink, one finger on your lips — quietly the most beautiful thing", wide: true },
   { src: null, caption: "the light was good - you were better" },
   { src: null, caption: "a moment i kept" },
   { src: null, caption: "you, in your own little world", tall: true },

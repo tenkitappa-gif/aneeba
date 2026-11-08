@@ -9,7 +9,7 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
-const V = "8";
+const V = "9";
 
 /* ---------------- navigation ---------------- */
 const NAV = [
@@ -283,7 +283,7 @@ const HERO = `<section class="hero" id="home">
           <span class="chapter-card__no">05</span>
           <span class="chapter-card__ico"><svg class="ico"><use href="#i-image"/></svg></span>
           <span class="chapter-card__title">Your photos</span>
-          <span class="chapter-card__line">every version of you i get to keep</span>
+          <span class="chapter-card__line">my favourite person, frame by frame</span>
           <span class="chapter-card__go">see them <svg class="ico"><use href="#i-right"/></svg></span>
         </a>
         <a class="chapter-card" href="music.html" data-reveal style="--d:.24s">
@@ -380,7 +380,7 @@ const GALLERY = `<section class="section" id="gallery">
     <div class="shell">
       <div class="head head--center">
         <p class="kicker" data-reveal><span class="kicker__line"></span>chapter five</p>
-        <h2 class="head__title" data-reveal style="--d:.08s">Every version of <em>you</em></h2>
+        <h2 class="head__title" data-reveal style="--d:.08s">My favourite person, <em>frame by frame</em></h2>
         <p class="head__sub" data-reveal style="--d:.16s">The little moments I want to keep forever. Tap a photo to see it bigger.</p>
       </div>
 
@@ -488,7 +488,7 @@ const PAGES = [
     file: "gallery.html",
     id: "gallery",
     title: "Your photos — For Aneeba",
-    desc: "Every version of you I get to keep.",
+    desc: "My favourite person, frame by frame.",
     body: GALLERY + pagenav(
       { file: "promises.html", label: "Promises" },
       { file: "music.html", label: "Our songs" }

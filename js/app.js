@@ -105,6 +105,7 @@
   const ctx = canvas ? canvas.getContext("2d") : null;
   let particles = [];
   let vw = 0, vh = 0, dpr = 1;
+  let lite = false;
 
   function spawn(initial) {
     const rose = Math.random() < 0.55;
@@ -123,13 +124,14 @@
 
   function resizeCanvas() {
     if (!canvas || !ctx) return;
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    lite = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 900;
+    dpr = Math.min(window.devicePixelRatio || 1, lite ? 1.35 : 2);
     vw = window.innerWidth;
     vh = window.innerHeight;
     canvas.width = Math.round(vw * dpr);
     canvas.height = Math.round(vh * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const count = vw < 700 ? 28 : vw < 1200 ? 44 : 62;
+    const count = vw < 700 ? (lite ? 16 : 28) : vw < 1200 ? (lite ? 26 : 44) : 62;
     particles = Array.from({ length: count }, () => spawn(true));
   }
 
@@ -163,12 +165,27 @@
   }
 
   let canvasRaf = null;
+  let lastDraw = 0;
   function loopCanvas(t) {
+    // light devices: cap the fixed background at ~30fps
+    if (lite && t - lastDraw < 31) {
+      canvasRaf = requestAnimationFrame(loopCanvas);
+      return;
+    }
+    lastDraw = t;
     drawFrame(t);
     canvasRaf = requestAnimationFrame(loopCanvas);
   }
   function startCanvas() {
     if (!canvas || !ctx) return;
+    // phones / small screens: skip the animated canvas entirely — biggest scroll win
+    lite = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 900;
+    if (lite) {
+      if (canvasRaf) { cancelAnimationFrame(canvasRaf); canvasRaf = null; }
+      canvas.style.display = "none";
+      return;
+    }
+    canvas.style.display = "";
     resizeCanvas();
     if (reduced) { drawFrame(0); return; }
     if (canvasRaf) cancelAnimationFrame(canvasRaf);

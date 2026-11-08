@@ -841,3 +841,53 @@ a{ color:inherit; text-decoration:none; }
   #canvas{ display:none; }
   .cursor{ display:none; }
 }
+
+/* ============ mobile / low-power performance ============ */
+@media (max-width:900px), (pointer:coarse){
+  /* drop the full-page grain + animated blurs (the biggest scroll cost on phones) */
+  .aurora__grain{ display:none; }
+  .orb{ filter:none; animation:none; will-change:auto; opacity:.42; }
+  .portrait__halo{ filter:blur(24px); animation:none; opacity:.4; }
+  .portrait__sheen{ display:none; }
+  .portrait__blur{ filter:blur(18px) saturate(1.1) brightness(.82); }
+  .sky__glow,.forever__glow{ filter:none; }
+  .sky__lines path{ animation:none; }
+
+  /* no backdrop blur on anything that moves with the page */
+  .rail,.menu,.topbar,.tl-card,.mini,.modal__scrim,.lightbox,
+  .lightbox__close,.lightbox__nav,.portrait__tag,.portrait__add{
+    backdrop-filter:none; -webkit-backdrop-filter:none;
+  }
+  .menu{ background:rgba(7,3,16,.98); }
+  .topbar{ background:linear-gradient(rgba(7,3,16,.97),rgba(7,3,16,.72) 70%,transparent); }
+  .modal__scrim{ background:rgba(4,2,10,.92); }
+  .lightbox{ background:rgba(4,2,10,.98); }
+  .mini{ background:rgba(15,7,26,.97); box-shadow:0 12px 30px rgba(0,0,0,.4); }
+
+  /* cheaper effects: no text-shimmer, no drop-shadow filters, no pulsing rings */
+  .hero__name,.forever__title span{ animation:none; filter:none; }
+  .star .ico,.heart-fly{ filter:none; }
+  .star.is-open::before{ animation:none; opacity:.45; }
+  .band__track{ animation-duration:52s; }
+  .portrait__tag{ box-shadow:0 10px 24px rgba(0,0,0,.35); }
+  .hero__name{ background-position:30% 0; }
+
+  /* ---- extra smooth mode: kill every looping animation on phones ---- */
+  #canvas{ display:none !important; }
+  .portrait__halo{ display:none; }
+  .portrait__blur{ display:none; }
+  .portrait__photo.is-landscape img[data-photo-img]{ object-fit:cover; }
+  .band__track,
+  .scroll-cue .ico,
+  .track__eq i,
+  .mini__eq i,
+  .portrait__orbit,
+  .sky::before,
+  .sky__lines path,
+  .star::before,
+  .star.is-open::before,
+  .hero__name,
+  .forever__title span{ animation:none !important; }
+  .star .ico{ filter:none; }
+  .track__cover .ico{ transition:none; }
+}

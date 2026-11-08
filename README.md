@@ -39,7 +39,7 @@ css/style.css         all styling, responsive breakpoints, animations
 js/data.js            letter, story, reasons, promises, gallery + track metadata
 js/app.js             preloader, nav, renderers, modals, gallery upload, player
 assets/photos/        your photos go here
-assets/songs/         background tracks (barbaad-saiyaara.mp3 not included yet — drop it here)
+assets/songs/         background tracks (barbaad plays from YouTube — see below)
 ```
 
 ### Sections
@@ -50,7 +50,7 @@ assets/songs/         background tracks (barbaad-saiyaara.mp3 not included yet �
 4. **Reasons** — flip cards (tap to reveal the back)
 5. **Promises** — a constellation; each star opens a promise and remembers it
 6. **Gallery** — 8 photo slots with lightbox
-7. **Music** — custom player, each song starts at its own sweet spot
+7. **Music** — custom player, each song starts at its own sweet spot (barbaad opens an official YouTube embed)
 8. **Forever** — closing "i love you" with a heart burst
 
 ## Editing the words
@@ -61,10 +61,11 @@ Everything romantic lives in `js/data.js`:
 - `story` — timeline entries
 - `reasons` — front/back of each flip card
 - `promises` — the 9 stars
-- `tracks` — song title, artist, file, and `start` offset in seconds
+- `tracks` — song title, artist, file, and `start` offset in seconds. A track with `youtube: "VIDEO_ID"` (instead of `file`) opens in the YouTube modal, e.g. `barbaad`.
 
 ## Small notes
 
 - Music starts only after a tap (browser autoplay rules). Each track seeks to its `start` value on load.
+- `barbaad` has no local MP3 — it streams from an official YouTube embed. Drop a real `barbaad-saiyaara.mp3` in `assets/songs/` and swap the `youtube` key for `file` + `startAt` to play it locally.
 - Reduced-motion is respected; the particle canvas and heavy animations settle down.
 - Works offline once all assets are local.

@@ -709,6 +709,20 @@ a{ color:inherit; text-decoration:none; }
 .promise__sealed{ display:flex; align-items:center; justify-content:center; gap:7px; margin:26px 0 0; font-size:9px; letter-spacing:.22em; text-transform:uppercase; color:rgba(243,201,139,.6); }
 .promise__sealed .ico{ width:12px; height:12px; }
 
+/* ============ video modal ============ */
+.video{
+  position:relative; width:min(860px,100%); border-radius:20px; overflow:hidden;
+  background:#0b0518; border:1px solid rgba(243,201,139,.24);
+  box-shadow:0 40px 90px rgba(0,0,0,.65), inset 0 1px 0 rgba(255,255,255,.07);
+  transform:translateY(22px) scale(.98); transition:transform .5s var(--ease);
+}
+.modal.is-open .video{ transform:none; }
+.video__frame{ position:relative; width:100%; aspect-ratio:16/9; background:#000; }
+.video__frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+.video__note{ margin:0; padding:11px 18px 13px; font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:rgba(248,238,246,.42); }
+.modal--video .modal__close{ background:rgba(10,4,20,.78); border-color:rgba(255,255,255,.22); color:#fff; }
+.track--yt .track__at{ color:rgba(255,120,150,.75); letter-spacing:.14em; text-transform:uppercase; }
+
 /* ============ lightbox ============ */
 .lightbox{
   position:fixed; inset:0; z-index:340; display:flex; align-items:center; justify-content:center;

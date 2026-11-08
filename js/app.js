@@ -592,12 +592,28 @@
     if (!target) return;
     target.classList.remove("is-open");
     target.setAttribute("aria-hidden", "true");
+    // stop the YouTube embed (and its audio) when the video modal closes
+    if (target.id === "videoModal") {
+      const frame = $("#videoFrame");
+      if (frame) frame.removeAttribute("src");
+    }
     if (activeModal === target) activeModal = null;
     unlock("modal");
   }
   $$(".modal").forEach((modal) => {
     $$("[data-close]", modal).forEach((btn) => btn.addEventListener("click", () => hideModal(modal)));
   });
+
+  /* ---------------- youtube video modal ---------------- */
+  const videoModal = $("#videoModal");
+  function openVideo(id, track) {
+    const frame = $("#videoFrame");
+    if (!frame || !videoModal) return;
+    frame.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0&playsinline=1&modestbranding=1";
+    const note = $(".video__note", videoModal);
+    if (note) note.textContent = track.title + " · " + track.artist;
+    showModal(videoModal);
+  }
 
   /* letter */
   const letterModal = $("#letterModal");
@@ -634,7 +650,7 @@
 
   if (playlist && data.tracks) {
     playlist.innerHTML = data.tracks.map((t, i) =>
-      '<button class="track" type="button" data-track="' + i + '" data-reveal style="--from:' + t.from + ';--to:' + t.to + ';--d:' + (i * 0.04) + 's" aria-label="Play ' + t.title + ' by ' + t.artist + '">' +
+      '<button class="track' + (t.youtube ? " track--yt" : "") + '" type="button" data-track="' + i + '" data-reveal style="--from:' + t.from + ';--to:' + t.to + ';--d:' + (i * 0.04) + 's" aria-label="' + (t.youtube ? "Play " + t.title + " on YouTube" : "Play " + t.title + " by " + t.artist) + '">' +
         '<span class="track__cover">' +
           '<svg class="ico"><use href="#i-play"/></svg>' +
           '<span class="track__eq"><i></i><i></i><i></i></span>' +
@@ -643,13 +659,15 @@
           '<span class="track__title">' + t.title + '</span>' +
           '<span class="track__artist">' + t.artist + '</span>' +
         '</span>' +
-        '<span class="track__at">' + (t.startAt > 0 ? fmt(t.startAt) : "") + '</span>' +
+        '<span class="track__at">' + (t.youtube ? "youtube" : (t.startAt > 0 ? fmt(t.startAt) : "")) + '</span>' +
       '</button>'
     ).join("");
 
     $$(".track", playlist).forEach((btn) => {
       btn.addEventListener("click", () => {
         const i = Number(btn.dataset.track);
+        const t = data.tracks[i];
+        if (t && t.youtube) { openVideo(t.youtube, t); return; }
         if (i === currentTrack) togglePlay();
         else playTrack(i);
       });
@@ -676,8 +694,9 @@
 
   function playTrack(i, autoplay) {
     if (!audio || !data.tracks || !data.tracks[i]) return;
-    autoplay = autoplay !== false;
     const t = data.tracks[i];
+    if (t.youtube) { openVideo(t.youtube, t); return; }
+    autoplay = autoplay !== false;
     currentTrack = i;
     const src = "assets/songs/" + t.file;
     const sameSrc = audio.src && audio.src.indexOf(t.file) !== -1;
@@ -716,14 +735,19 @@
       audio.pause();
     }
   }
-  function nextTrack() {
+  function stepTrack(dir) {
     if (!data.tracks || !data.tracks.length) return;
-    playTrack((currentTrack + 1) % data.tracks.length);
+    let i = currentTrack < 0 ? (dir > 0 ? -1 : 0) : currentTrack;
+    for (let n = 0; n < data.tracks.length; n++) {
+      i = (i + dir + data.tracks.length) % data.tracks.length;
+      if (!data.tracks[i].youtube) { playTrack(i); return; }
+    }
   }
+  function nextTrack() { stepTrack(1); }
   function prevTrack() {
     if (!data.tracks || !data.tracks.length) return;
     if (audio && audio.currentTime > 5) { audio.currentTime = 0; return; }
-    playTrack((currentTrack - 1 + data.tracks.length) % data.tracks.length);
+    stepTrack(-1);
   }
 
   if (audio) {

@@ -119,6 +119,5 @@ DATA.tracks = [
   { file: "reflections-the-neighbourhood.mp3", title: "reflections", artist: "the neighbourhood", startAt: 42, from: "#6ee7c8", to: "#0f766e" },
   { file: "time-lapse-junny.mp3", title: "time lapse", artist: "junny", startAt: 40, from: "#ffb36b", to: "#c2410c" },
   { file: "senorita-shawn-camila.mp3", title: "senorita", artist: "shawn mendes & camila cabello", startAt: 71, from: "#ff7a7a", to: "#9f1239" },
-  { file: "favour-avenoir.mp3", title: "favour", artist: "avenoir", startAt: 40, from: "#ff7ac8", to: "#831843" },
-  { file: "barbaad-saiyaara.mp3", title: "barbaad", artist: "jubin nautiyal, the rish", startAt: 0, from: "#ff9fb2", to: "#5b21b6" }
+  { youtube: "0v5eHPfy5Lk", title: "barbaad", artist: "jubin nautiyal, the rish", startAt: 0, from: "#ff9fb2", to: "#5b21b6" }
 ];
